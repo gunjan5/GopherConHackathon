@@ -19,15 +19,11 @@ func main() {
 			fmt.Errorf("Input sting length must be between 1 and 3, you entered the string of length: %d \n", ln)
 			os.Exit(1)
 		}
-		if !strings.Contains(tmp, "X") {
-			if !strings.Contains(tmp, "O") {
-				if !strings.Contains(tmp, ".") {
-					fmt.Printf("Invalid input: %v. It must be O, X or . \n", tmp)
-					fmt.Errorf("Invalid input: %v. It must be O, X or . \n", tmp)
-					os.Exit(1)
-				}
 
-			}
+		if strings.Count(tmp, "X")+strings.Count(tmp, "O")+strings.Count(tmp, ".") != 3 {
+			fmt.Printf("Invalid input: %v. It must be O, X or . \n", tmp)
+			fmt.Errorf("Invalid input: %v. It must be O, X or . \n", tmp)
+			os.Exit(1)
 
 		}
 
