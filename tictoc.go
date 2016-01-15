@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"os"
 	"strings"
 )
@@ -10,6 +11,7 @@ func main() {
 
 	var st []string
 	var tmp string
+	var xCount, oCount int
 
 	for i := 0; i < 3; i++ {
 		fmt.Scanf("%s", &tmp)
@@ -27,8 +29,18 @@ func main() {
 
 		}
 
+		xCount += strings.Count(tmp, "X")
+		oCount += strings.Count(tmp, "O")
+
 		st = append(st, tmp)
 		tmp = ""
+
+	}
+
+	if math.Abs(float64(xCount-oCount)) > 1.0 {
+		fmt.Printf("Someone is playing out of turn\n")
+		fmt.Errorf("Someone is playing out of turn\n")
+		os.Exit(1)
 
 	}
 
