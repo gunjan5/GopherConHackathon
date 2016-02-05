@@ -7,9 +7,11 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 )
 
 func main() {
+
 	var id int
 
 	fmt.Scanf("%d", &id)
@@ -18,7 +20,8 @@ func main() {
 		fmt.Errorf("Input must be > 1, you entered: %d \n", id)
 		os.Exit(1)
 	}
-
+	start := time.Now()
+	
 	resp, _ := http.Get("https://api.github.com/user/" + strconv.Itoa(id)) //5966968
 	defer resp.Body.Close()
 
@@ -38,5 +41,6 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Println(int(i))
+	fmt.Printf("****** Executed in time %s \n ", time.Since(start))
 
 }
